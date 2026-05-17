@@ -30,7 +30,7 @@ function SidebarFooter({
       >
         <span
           className={[
-            "truncate whitespace-nowrap text-[11px] font-medium transition-all duration-300",
+            "truncate whitespace-nowrap text-[12px] font-medium transition-all duration-300",
             collapsed ? "w-0 opacity-0" : "w-auto opacity-100",
           ].join(" ")}
         >

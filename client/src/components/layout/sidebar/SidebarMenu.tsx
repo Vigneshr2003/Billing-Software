@@ -9,7 +9,7 @@ function SidebarMenu({ collapsed }: SidebarMenuProps) {
   return (
     <nav
       aria-label="Primary sidebar navigation"
-      className="min-h-0 flex-1 overflow-y-auto px-2 py-2.5"
+      className="scrollbar-hidden min-h-0 flex-1 overflow-y-auto px-2 py-2.5"
     >
       <ul className="space-y-1">
         {sidebarMenuItems.map((item) => (

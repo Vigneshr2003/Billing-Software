@@ -19,7 +19,7 @@ function Sidebar({
     <div
       className={[
         "flex h-screen flex-col overflow-hidden bg-[#0F2B5B] text-white transition-all duration-300",
-        collapsed ? "w-[70px]" : "w-[260px]",
+        collapsed ? "w-17.5" : "w-65",
         mobile ? "shadow-2xl" : "shadow-none",
       ].join(" ")}
     >

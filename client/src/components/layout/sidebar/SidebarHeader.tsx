@@ -24,10 +24,10 @@ function SidebarHeader({
             collapsed ? "w-0 opacity-0" : "w-auto opacity-100",
           ].join(" ")}
         >
-          <p className="truncate text-[12px] font-semibold text-white">
+          <p className="truncate text-[14px] font-semibold text-white">
             Venticinqe Mart
           </p>
-          <p className="truncate text-[10px] text-blue-100/75">
+          <p className="truncate text-[12px] text-blue-100/75">
             Wholesale Distribution
           </p>
         </div>

@@ -30,7 +30,7 @@ function DashboardLayout() {
         <div
           className={[
             "flex min-w-0 flex-1 flex-col overflow-hidden transition-[padding] duration-300",
-            isCollapsed ? "md:pl-[70px]" : "md:pl-[260px]",
+            isCollapsed ? "md:pl-17.5" : "md:pl-65",
           ].join(" ")}
         >
           <Topbar onOpenMobileMenu={openMobileSidebar} />
