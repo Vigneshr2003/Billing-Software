@@ -56,7 +56,7 @@ function SidebarMenuItem({
           <Icon className="h-4 w-4 shrink-0" />
           <span
             className={[
-              "truncate whitespace-nowrap font-normal leading-none transition-all duration-300",
+              "truncate whitespace-nowrap font-normal text-[12px] leading-none transition-all duration-300",
               collapsed ? "w-0 opacity-0" : "w-auto opacity-100",
             ].join(" ")}
           >
