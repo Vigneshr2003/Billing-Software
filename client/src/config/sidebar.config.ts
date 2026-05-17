@@ -30,12 +30,13 @@ export const sidebarMenuItems: SidebarMenuEntry[] = [
     id: "dashboard",
     label: "Dashboard",
     icon: LayoutDashboard,
-    active: true,
+    path: "/dashboard",
   },
   {
     id: "billing-pos",
     label: "Billing / POS",
     icon: CreditCard,
+    path: "/billing-pos",
   },
   {
     id: "sales",

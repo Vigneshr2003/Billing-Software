@@ -4,7 +4,7 @@ export interface SidebarMenuEntry {
   id: string;
   label: string;
   icon: LucideIcon;
-  active?: boolean;
+  path?: string;
   children?: SidebarMenuEntry[];
 }
 

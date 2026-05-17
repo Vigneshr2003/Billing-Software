@@ -1,5 +1,6 @@
 import { ChevronDown } from "lucide-react";
 import { useMemo, useState } from "react";
+import { NavLink, useLocation } from "react-router-dom";
 import type { SidebarMenuEntry } from "./sidebar.types";
 
 interface SidebarMenuItemProps {
@@ -13,15 +14,19 @@ function SidebarMenuItem({
   collapsed,
   level = 0,
 }: SidebarMenuItemProps) {
+  const location = useLocation();
   const hasChildren = Boolean(item.children?.length);
   const hasActiveChild = useMemo(
-    () => item.children?.some((child) => child.active) ?? false,
-    [item.children],
+    () =>
+      item.children?.some(
+        (child) => child.path && location.pathname.startsWith(child.path),
+      ) ?? false,
+    [item.children, location.pathname],
   );
   const [isExpanded, setIsExpanded] = useState(hasActiveChild);
 
   const Icon = item.icon;
-  const isActive = item.active ?? false;
+  const isActive = item.path ? location.pathname === item.path : hasActiveChild;
 
   const handleToggle = () => {
     if (hasChildren) {
@@ -31,48 +36,81 @@ function SidebarMenuItem({
 
   return (
     <li className="group relative">
-      <button
-        type="button"
-        aria-expanded={hasChildren ? isExpanded : undefined}
-        aria-current={isActive ? "page" : undefined}
-        onClick={handleToggle}
-        title={collapsed ? item.label : undefined}
-        className={[
-          "flex w-full items-center rounded-lg px-2.5 py-1.5 text-left transition-all duration-300",
-          "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40",
-          collapsed ? "justify-center" : "justify-between",
-          isActive
-            ? "bg-[#2563EB] text-white shadow-lg shadow-blue-950/25"
-            : "text-blue-50/90 hover:bg-white/10 hover:text-white",
-          level > 0 && !collapsed ? "pl-9 text-[11px] text-blue-100/80" : "text-[12px]",
-        ].join(" ")}
-      >
-        <span
+      {hasChildren ? (
+        <button
+          type="button"
+          aria-expanded={isExpanded}
+          aria-current={isActive ? "page" : undefined}
+          onClick={handleToggle}
+          title={collapsed ? item.label : undefined}
           className={[
-            "flex min-w-0 items-center",
-            collapsed ? "justify-center" : "gap-3",
+            "flex w-full items-center rounded-lg px-2.5 py-1.5 text-left transition-all duration-300",
+            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40",
+            collapsed ? "justify-center" : "justify-between",
+            isActive
+              ? "bg-[#2563EB] text-white shadow-lg shadow-blue-950/25"
+              : "text-blue-50/90 hover:bg-white/10 hover:text-white",
+            level > 0 && !collapsed ? "pl-9 text-[11px] text-blue-100/80" : "text-[12px]",
           ].join(" ")}
         >
-          <Icon className="h-4 w-4 shrink-0" />
           <span
             className={[
-              "truncate whitespace-nowrap font-normal text-[12px] leading-none transition-all duration-300",
-              collapsed ? "w-0 opacity-0" : "w-auto opacity-100",
+              "flex min-w-0 items-center",
+              collapsed ? "justify-center" : "gap-3",
             ].join(" ")}
           >
-            {item.label}
+            <Icon className="h-4 w-4 shrink-0" />
+            <span
+              className={[
+                "truncate whitespace-nowrap font-normal text-[12px] leading-none transition-all duration-300",
+                collapsed ? "w-0 opacity-0" : "w-auto opacity-100",
+              ].join(" ")}
+            >
+              {item.label}
+            </span>
           </span>
-        </span>
 
-        {hasChildren && !collapsed ? (
-          <ChevronDown
+          {!collapsed ? (
+            <ChevronDown
+              className={[
+                "h-3 w-3 shrink-0 text-blue-100/80 transition-transform duration-300",
+                isExpanded ? "rotate-180" : "",
+              ].join(" ")}
+            />
+          ) : null}
+        </button>
+      ) : (
+        <NavLink
+          to={item.path ?? "#"}
+          title={collapsed ? item.label : undefined}
+          className={[
+            "flex w-full items-center rounded-lg px-2.5 py-1.5 text-left transition-all duration-300",
+            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40",
+            collapsed ? "justify-center" : "justify-between",
+            isActive
+              ? "bg-[#2563EB] text-white shadow-lg shadow-blue-950/25"
+              : "text-blue-50/90 hover:bg-white/10 hover:text-white",
+            level > 0 && !collapsed ? "pl-9 text-[11px] text-blue-100/80" : "text-[12px]",
+          ].join(" ")}
+        >
+          <span
             className={[
-              "h-3 w-3 shrink-0 text-blue-100/80 transition-transform duration-300",
-              isExpanded ? "rotate-180" : "",
+              "flex min-w-0 items-center",
+              collapsed ? "justify-center" : "gap-3",
             ].join(" ")}
-          />
-        ) : null}
-      </button>
+          >
+            <Icon className="h-4 w-4 shrink-0" />
+            <span
+              className={[
+                "truncate whitespace-nowrap font-normal text-[12px] leading-none transition-all duration-300",
+                collapsed ? "w-0 opacity-0" : "w-auto opacity-100",
+              ].join(" ")}
+            >
+              {item.label}
+            </span>
+          </span>
+        </NavLink>
+      )}
 
       {collapsed ? (
         <div className="pointer-events-none absolute left-full top-1/2 z-30 ml-3 hidden -translate-y-1/2 rounded-lg border border-slate-200 bg-white px-2.5 py-1.5 text-[10px] font-medium text-slate-700 shadow-xl group-hover:block">
