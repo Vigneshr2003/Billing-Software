@@ -1,4 +1,4 @@
-import { CheckCircle2, CircleAlert, Wifi } from "lucide-react";
+import { CheckCircle2, CircleAlert, Wifi, ShoppingCart, Package } from "lucide-react";
 import type { FooterStatusItem } from "../../types/billing.types";
 
 interface FooterStatusProps {
@@ -15,12 +15,18 @@ function FooterStatus({
   return (
     <footer className="sticky bottom-0 z-10 mt-auto border-t border-slate-200 bg-white px-3 py-2 text-slate-700 sm:px-4">
       <div className="flex flex-col gap-1.5 text-[10px] lg:flex-row lg:items-center lg:justify-between">
-        <div className="flex flex-wrap items-center gap-3">
-          <span className="font-medium">Total Items: {totalItems}</span>
-          <span className="font-medium">Total Qty: {totalQuantity}</span>
+        <div className="flex flex-wrap items-center gap-4">
+          <span className="inline-flex items-center gap-1.5 font-semibold">
+            <ShoppingCart className="h-3.5 w-3.5 text-blue-500" />
+            Items: <span className="text-blue-700">{totalItems}</span>
+          </span>
+          <span className="inline-flex items-center gap-1.5 font-semibold">
+            <Package className="h-3.5 w-3.5 text-emerald-500" />
+            Qty: <span className="text-emerald-700">{totalQuantity}</span>
+          </span>
         </div>
 
-        <div className="flex flex-wrap items-center gap-3 text-slate-600">
+        <div className="flex flex-wrap items-center gap-3 text-slate-500">
           {statuses.map((status) => {
             const Icon =
               status.tone === "warning"
@@ -38,11 +44,11 @@ function FooterStatus({
                       ? "text-emerald-500"
                       : status.tone === "warning"
                         ? "text-amber-400"
-                        : "text-slate-500",
+                        : "text-slate-400",
                   ].join(" ")}
                 />
-                <span>
-                  {status.label}: {status.value}
+                <span className="font-medium">
+                  {status.label}: <span className="text-slate-700">{status.value}</span>
                 </span>
               </span>
             );

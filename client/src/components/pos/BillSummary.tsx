@@ -19,41 +19,43 @@ function BillSummary({ summary, formatCurrency }: BillSummaryProps) {
   ];
 
   return (
-    <section className="h-full rounded-xl border border-slate-200 bg-white p-3 shadow-sm">
-      <div className="mb-3 flex items-center gap-2">
-        <ReceiptText className="h-4 w-4 text-blue-600" />
-        <h2 className="text-[13px] font-semibold text-slate-900">Bill Summary</h2>
+    <section className="rounded-xl border border-slate-200 bg-white p-3.5 shadow-sm">
+      <div className="mb-3 flex items-center gap-2.5">
+        <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-blue-50">
+          <ReceiptText className="h-3.5 w-3.5 text-blue-600" />
+        </div>
+        <h2 className="text-[13px] font-semibold text-slate-800">Bill Summary</h2>
       </div>
 
-      <div className="space-y-1">
+      <div className="space-y-0.5">
         {lines.map((line) => (
           <div
             key={line.label}
-            className="flex items-center justify-between px-0 py-0.5 text-[11px]"
+            className="flex items-center justify-between rounded-md px-1 py-1.5 transition hover:bg-slate-50"
           >
-            <span className="text-slate-500">{line.label}</span>
-            <span className="font-semibold text-slate-800">{line.value}</span>
+            <span className="text-[11px] text-slate-500">{line.label}</span>
+            <span className="text-[11px] font-semibold tabular-nums text-slate-800">{line.value}</span>
           </div>
         ))}
 
-        <div className="flex items-center justify-between gap-2 px-0 py-0.5 text-[11px]">
-          <span className="text-slate-500">Discount</span>
+        <div className="flex items-center justify-between rounded-md px-1 py-1.5">
+          <span className="text-[11px] text-slate-500">Discount</span>
           <div className="flex items-center gap-1.5">
-            <span className="text-slate-400">%</span>
+            <span className="text-[10px] text-slate-400">%</span>
             <Input
               aria-label="Discount amount"
-              className="h-7 w-20 rounded-md border border-slate-200 bg-white px-2 text-right text-[10px] text-slate-800 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+              className="h-7 w-20 rounded-md border border-slate-200 bg-slate-50/50 px-2 text-right text-[11px] font-medium text-slate-800 outline-none transition focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-100"
               defaultValue="0.00"
             />
           </div>
         </div>
       </div>
 
-      <div className="mt-3 border-t border-slate-200 pt-3">
-        <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-500">
+      <div className="mt-3 rounded-xl border border-blue-100 bg-linear-to-br from-blue-50 to-blue-50/30 px-3.5 py-3">
+        <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-blue-400">
           Grand Total
         </span>
-        <p className="mt-1.5 text-[28px] font-semibold text-blue-700">
+        <p className="mt-1 text-[28px] font-bold tabular-nums text-blue-700">
           {formatCurrency(summary.grandTotal)}
         </p>
       </div>

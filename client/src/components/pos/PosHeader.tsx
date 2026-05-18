@@ -1,4 +1,4 @@
-import Card from "../ui/Card";
+import { Hash, Store } from "lucide-react";
 
 interface PosHeaderProps {
   invoiceNumber: string;
@@ -6,18 +6,21 @@ interface PosHeaderProps {
 
 function PosHeader({ invoiceNumber }: PosHeaderProps) {
   return (
-    <section className="border-b border-slate-200 px-3 py-2 sm:px-4">
-      <Card className="rounded-lg border border-slate-200 bg-white px-3 py-2">
-        <div>
-          <p className="text-[10px] font-medium uppercase tracking-[0.18em] text-slate-500">
-            Invoice No
-          </p>
-          <p className="mt-0.5 text-[13px] font-semibold text-slate-900">
-            {invoiceNumber}
-          </p>
+    <header className="border-b border-slate-200 bg-white px-3 py-2.5 sm:px-4">
+      <div className="flex flex-wrap items-center gap-4">
+        <div className="flex items-center gap-2 rounded-lg border border-blue-100 bg-blue-50 px-3 py-1.5">
+          <Hash className="h-3.5 w-3.5 text-blue-600" />
+          <div>
+            <p className="text-[9px] font-semibold uppercase tracking-wider text-blue-500">
+              Invoice
+            </p>
+            <p className="text-[13px] font-bold tabular-nums text-blue-700">
+              {invoiceNumber}
+            </p>
+          </div>
         </div>
-      </Card>
-    </section>
+      </div>
+    </header>
   );
 }
 

@@ -36,18 +36,19 @@ function BillingPOSPage() {
   } = useBillingPOS();
 
   return (
-    <div className="flex min-h-full flex-col rounded-xl border border-slate-200 bg-slate-50 shadow-sm">
+    <div className="flex min-h-full flex-col rounded-xl border border-slate-200 bg-slate-50/50 shadow-sm">
       <PosHeader invoiceNumber={invoiceNumber} />
 
-      <div className="flex-1 p-2 sm:p-2.5">
-        <div className="space-y-2.5">
+      <div className="flex-1 p-2.5 sm:p-3">
+        <div className="space-y-3">
           <CustomerSection
             customerForm={customerForm}
             onFieldChange={updateCustomerField}
           />
 
-          <div className="grid items-start gap-2.5 2xl:grid-cols-[minmax(0,1.98fr)_320px]">
-            <div className="min-w-0 space-y-2.5">
+          {/* Main billing area: Table + Sidebar (Summary & Payment) */}
+          <div className="grid items-stretch gap-3 2xl:grid-cols-[minmax(0,1.98fr)_340px]">
+            <div className="min-w-0 [&>section]:h-full">
               <BillingTable
                 rows={rows}
                 formatCurrency={formatCurrency}
@@ -57,19 +58,9 @@ function BillingPOSPage() {
                 onAddItem={addBlankRow}
                 onClearAll={clearAllRows}
               />
-
-              <div className="grid gap-2.5 xl:grid-cols-3">
-                <RecentItems
-                  items={recentItems}
-                  formatCurrency={formatCurrency}
-                  onReAdd={addRecentItem}
-                />
-                <CustomerDetails customer={customerSnapshot} />
-                <StockInfo stock={stockSnapshot} />
-              </div>
             </div>
 
-            <aside className="grid gap-2 content-start">
+            <aside className="grid gap-3 content-start">
               <BillSummary summary={summary} formatCurrency={formatCurrency} />
 
               <PaymentSection
@@ -80,9 +71,19 @@ function BillingPOSPage() {
                 onPaymentModeChange={setPaymentMode}
                 onAmountReceivedChange={setAmountReceived}
               />
-
-              <PosActions />
             </aside>
+          </div>
+
+          {/* Bottom row: Recent Items + Customer Details + Stock Info + Actions — all same height */}
+          <div className="grid gap-3 xl:grid-cols-4">
+            <RecentItems
+              items={recentItems}
+              formatCurrency={formatCurrency}
+              onReAdd={addRecentItem}
+            />
+            <CustomerDetails customer={customerSnapshot} />
+            <StockInfo stock={stockSnapshot} />
+            <PosActions />
           </div>
         </div>
       </div>
