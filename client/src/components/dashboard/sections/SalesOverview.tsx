@@ -1,7 +1,5 @@
 import { useState } from "react";
 import {
-  LineChart,
-  Line,
   XAxis,
   YAxis,
   CartesianGrid,
@@ -73,11 +71,10 @@ function SalesOverview() {
                     setFilter(opt);
                     setShowDropdown(false);
                   }}
-                  className={`block w-full px-4 py-1.5 text-left text-xs transition hover:bg-slate-50 ${
-                    filter === opt
+                  className={`block w-full px-4 py-1.5 text-left text-xs transition hover:bg-slate-50 ${filter === opt
                       ? "font-semibold text-blue-600"
                       : "text-slate-600"
-                  }`}
+                    }`}
                 >
                   {opt}
                 </button>
@@ -87,7 +84,7 @@ function SalesOverview() {
         </div>
       </div>
 
-      <div className="h-[280px] w-full">
+      <div className="h-70 w-full">
         <ResponsiveContainer width="100%" height="100%">
           <AreaChart data={data} margin={{ top: 5, right: 10, left: -10, bottom: 0 }}>
             <defs>
@@ -117,8 +114,8 @@ function SalesOverview() {
                 fontSize: "12px",
                 boxShadow: "0 4px 12px rgba(0,0,0,0.08)",
               }}
-              formatter={(value: number) => [
-                `₹${value.toLocaleString("en-IN")}`,
+              formatter={(value) => [
+                `₹${Number(value ?? 0).toLocaleString("en-IN")}`,
                 "Sales",
               ]}
             />
