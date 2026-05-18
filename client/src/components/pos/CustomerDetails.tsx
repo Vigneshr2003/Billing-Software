@@ -1,11 +1,11 @@
 import { Phone, UserSquare2 } from "lucide-react";
-import type { CustomerSnapshot } from "../../../types/pos";
+import type { CustomerSnapshot } from "../../types/customer.types";
 
-interface CustomerDetailsCardProps {
+interface CustomerDetailsProps {
   customer: CustomerSnapshot;
 }
 
-function CustomerDetailsCard({ customer }: CustomerDetailsCardProps) {
+function CustomerDetails({ customer }: CustomerDetailsProps) {
   const details = [
     { label: "Mobile", value: customer.mobileNumber, icon: Phone },
     { label: "Type", value: customer.customerType, icon: UserSquare2 },
@@ -44,4 +44,4 @@ function CustomerDetailsCard({ customer }: CustomerDetailsCardProps) {
   );
 }
 
-export default CustomerDetailsCard;
+export default CustomerDetails;

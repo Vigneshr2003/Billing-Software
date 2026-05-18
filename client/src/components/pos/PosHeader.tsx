@@ -1,11 +1,13 @@
-interface InvoiceHeaderProps {
+import Card from "../ui/Card";
+
+interface PosHeaderProps {
   invoiceNumber: string;
 }
 
-function InvoiceHeader({ invoiceNumber }: InvoiceHeaderProps) {
+function PosHeader({ invoiceNumber }: PosHeaderProps) {
   return (
     <section className="border-b border-slate-200 px-3 py-2 sm:px-4">
-      <div className="flex items-center justify-between rounded-lg border border-slate-200 bg-white px-3 py-2">
+      <Card className="rounded-lg border border-slate-200 bg-white px-3 py-2">
         <div>
           <p className="text-[10px] font-medium uppercase tracking-[0.18em] text-slate-500">
             Invoice No
@@ -14,9 +16,9 @@ function InvoiceHeader({ invoiceNumber }: InvoiceHeaderProps) {
             {invoiceNumber}
           </p>
         </div>
-      </div>
+      </Card>
     </section>
   );
 }
 
-export default InvoiceHeader;
+export default PosHeader;

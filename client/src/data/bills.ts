@@ -1,19 +1,6 @@
-import type {
-  BillingItemRow,
-  CustomerFormState,
-  CustomerSnapshot,
-  FooterStatusItem,
-  RecentItem,
-  StockSnapshot,
-} from "../types/pos";
+import type { BillingItemRow, FooterStatusItem } from "../types/billing.types";
 
-export const initialCustomerForm: CustomerFormState = {
-  customerName: "Raj Stores",
-  mobileNumber: "9876543210",
-  gstin: "33AABCR1023L1Z7",
-  outstandingAmount: "Rs. 18,450",
-  customerType: "Wholesale",
-};
+export const currentInvoiceNumber = "INV-2026-0517-018";
 
 export const initialBillingRows: BillingItemRow[] = [
   {
@@ -56,27 +43,6 @@ export const initialBillingRows: BillingItemRow[] = [
     taxPercent: 5,
   },
 ];
-
-export const recentItems: RecentItem[] = [
-  { id: "recent-1", name: "Parle-G Biscuit 800g", code: "PG-800", price: 123.5 },
-  { id: "recent-2", name: "Tata Tea Premium 1kg", code: "TT-1KG", price: 275.0 },
-  { id: "recent-3", name: "Surf Excel 3kg", code: "SE-3KG", price: 412.0 },
-  { id: "recent-4", name: "Colgate Strong 200g", code: "CG-200", price: 98.0 },
-];
-
-export const customerSnapshot: CustomerSnapshot = {
-  name: "Raj Stores",
-  mobileNumber: "9876543210",
-  customerType: "Wholesale",
-  outstandingAmount: "Rs. 18,450",
-};
-
-export const stockSnapshot: StockSnapshot = {
-  currentStock: "148 Bags",
-  minimumStock: "40 Bags",
-  lastPurchaseRate: "Rs. 2,210",
-  lastPurchaseDate: "12 May 2026",
-};
 
 export const footerStatuses: FooterStatusItem[] = [
   { id: "printer", label: "Printer", value: "Connected", tone: "success" },

@@ -1,25 +1,15 @@
-import { useEffect, useMemo, useState } from "react";
-import {
-  customerSnapshot,
-  footerStatuses,
-  initialBillingRows,
-  initialCustomerForm,
-  recentItems,
-  stockSnapshot,
-} from "../data/pos-data";
+import { useMemo, useState } from "react";
+import { currentInvoiceNumber, footerStatuses, initialBillingRows } from "../data/bills";
+import { customerSnapshot, initialCustomerForm } from "../data/customers";
+import { recentItems, stockSnapshot } from "../data/products";
+import { formatCurrency } from "../lib/formatCurrency";
 import type {
   BillingItemRow,
-  CustomerFormState,
   PaymentMode,
   PosSummary,
-  RecentItem,
-} from "../types/pos";
-
-const currencyFormatter = new Intl.NumberFormat("en-IN", {
-  style: "currency",
-  currency: "INR",
-  maximumFractionDigits: 2,
-});
+} from "../types/billing.types";
+import type { CustomerFormState } from "../types/customer.types";
+import type { RecentItem } from "../types/product.types";
 
 function calculateRowAmount(row: BillingItemRow) {
   const baseAmount = row.qty * row.rate;
@@ -30,36 +20,15 @@ function calculateRowAmount(row: BillingItemRow) {
   return taxableAmount + taxAmount;
 }
 
-function formatDate(date: Date) {
-  return date.toLocaleDateString("en-GB", {
-    day: "2-digit",
-    month: "short",
-    year: "numeric",
-  });
-}
-
-function formatTime(date: Date) {
-  return date.toLocaleTimeString("en-IN", {
-    hour: "2-digit",
-    minute: "2-digit",
-  });
-}
-
 function useBillingPOS() {
-  const [invoiceNow, setInvoiceNow] = useState(() => new Date());
-  const [rows, setRows] = useState(initialBillingRows);
-  const [customerForm, setCustomerForm] =
-    useState<CustomerFormState>(initialCustomerForm);
+  const [rows, setRows] = useState<BillingItemRow[]>(() =>
+    initialBillingRows.map((row) => ({ ...row })),
+  );
+  const [customerForm, setCustomerForm] = useState<CustomerFormState>(() => ({
+    ...initialCustomerForm,
+  }));
   const [paymentMode, setPaymentMode] = useState<PaymentMode>("cash");
   const [amountReceived, setAmountReceived] = useState("8000");
-
-  useEffect(() => {
-    const timer = window.setInterval(() => {
-      setInvoiceNow(new Date());
-    }, 60000);
-
-    return () => window.clearInterval(timer);
-  }, []);
 
   const summary = useMemo<PosSummary>(() => {
     const itemsCount = rows.length;
@@ -182,15 +151,7 @@ function useBillingPOS() {
   };
 
   return {
-    invoiceMeta: {
-      invoiceNumber: "INV-2026-0517-018",
-      currentDate: formatDate(invoiceNow),
-      currentTime: formatTime(invoiceNow),
-      branchName: "Main Branch",
-      userName: "Srinath",
-      userRole: "Cashier",
-      notificationCount: 4,
-    },
+    invoiceNumber: currentInvoiceNumber,
     rows,
     customerForm,
     paymentMode,
@@ -201,7 +162,7 @@ function useBillingPOS() {
     customerSnapshot,
     stockSnapshot,
     footerStatuses,
-    formatCurrency: (value: number) => currencyFormatter.format(value),
+    formatCurrency,
     calculateRowAmount,
     setPaymentMode,
     setAmountReceived,

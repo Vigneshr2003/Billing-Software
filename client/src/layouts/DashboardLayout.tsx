@@ -1,6 +1,5 @@
 import { Outlet } from "react-router-dom";
 import Sidebar from "../components/layout/sidebar/Sidebar";
-import MobileSidebar from "../components/layout/sidebar/MobileSidebar";
 import Topbar from "../components/layout/topbar/Topbar";
 import useSidebar from "../hooks/useSidebar";
 
@@ -23,8 +22,10 @@ function DashboardLayout() {
           />
         </aside>
 
-        <MobileSidebar
+        <Sidebar
+          collapsed={false}
           isOpen={isMobileSidebarOpen}
+          mobile
           onClose={closeMobileSidebar}
         />
 

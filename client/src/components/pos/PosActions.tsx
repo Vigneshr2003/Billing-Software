@@ -8,8 +8,9 @@ import {
   RotateCcw,
   Save,
 } from "lucide-react";
+import Button from "../ui/Button";
 
-function QuickActionsSection() {
+function PosActions() {
   const actions = [
     {
       label: "Save & Print",
@@ -57,9 +58,8 @@ function QuickActionsSection() {
     <section className="h-full min-h-[220px] rounded-xl border border-slate-200 bg-white p-2 shadow-sm">
       <div className="grid h-full auto-rows-fr grid-cols-2 gap-2">
         {actions.map(({ label, icon: Icon, className }) => (
-          <button
+          <Button
             key={label}
-            type="button"
             className={[
               "inline-flex h-full min-h-0 items-center justify-center gap-1 rounded-lg px-2 text-[9px] font-semibold transition shadow-sm",
               className,
@@ -67,11 +67,11 @@ function QuickActionsSection() {
           >
             <Icon className="h-3 w-3" />
             <span>{label}</span>
-          </button>
+          </Button>
         ))}
       </div>
     </section>
   );
 }
 
-export default QuickActionsSection;
+export default PosActions;

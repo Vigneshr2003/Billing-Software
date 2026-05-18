@@ -1,4 +1,4 @@
-import type { SidebarMenuEntry } from "../components/layout/sidebar/sidebar.types";
+import type { LucideIcon } from "lucide-react";
 import {
   Bell,
   BookText,
@@ -25,7 +25,15 @@ import {
   Wallet,
 } from "lucide-react";
 
-export const sidebarMenuItems: SidebarMenuEntry[] = [
+export interface SidebarEntry {
+  id: string;
+  label: string;
+  icon: LucideIcon;
+  path?: string;
+  children?: SidebarEntry[];
+}
+
+export const sidebarData: SidebarEntry[] = [
   {
     id: "dashboard",
     label: "Dashboard",

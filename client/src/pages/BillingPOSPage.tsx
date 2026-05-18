@@ -1,18 +1,18 @@
-import QuickActionsSection from "../components/pos/actions/QuickActionsSection";
-import BillingTableSection from "../components/pos/billing-table/BillingTableSection";
-import CustomerInfoSection from "../components/pos/customer/CustomerInfoSection";
-import CustomerDetailsCard from "../components/pos/customer-details/CustomerDetailsCard";
-import FooterStatusBar from "../components/pos/footer-status/FooterStatusBar";
-import InvoiceHeader from "../components/pos/header/InvoiceHeader";
-import PaymentSection from "../components/pos/payment/PaymentSection";
-import RecentItemsSection from "../components/pos/recent-items/RecentItemsSection";
-import StockInfoCard from "../components/pos/stock-info/StockInfoCard";
-import BillSummaryPanel from "../components/pos/summary/BillSummaryPanel";
+import BillSummary from "../components/pos/BillSummary";
+import BillingTable from "../components/pos/BillingTable";
+import CustomerDetails from "../components/pos/CustomerDetails";
+import CustomerSection from "../components/pos/CustomerSection";
+import FooterStatus from "../components/pos/FooterStatus";
+import PaymentSection from "../components/pos/PaymentSection";
+import PosActions from "../components/pos/PosActions";
+import PosHeader from "../components/pos/PosHeader";
+import RecentItems from "../components/pos/RecentItems";
+import StockInfo from "../components/pos/StockInfo";
 import useBillingPOS from "../hooks/useBillingPOS";
 
 function BillingPOSPage() {
   const {
-    invoiceMeta,
+    invoiceNumber,
     rows,
     customerForm,
     paymentMode,
@@ -37,18 +37,18 @@ function BillingPOSPage() {
 
   return (
     <div className="flex min-h-full flex-col rounded-xl border border-slate-200 bg-slate-50 shadow-sm">
-      <InvoiceHeader invoiceNumber={invoiceMeta.invoiceNumber} />
+      <PosHeader invoiceNumber={invoiceNumber} />
 
       <div className="flex-1 p-2 sm:p-2.5">
         <div className="space-y-2.5">
-          <CustomerInfoSection
+          <CustomerSection
             customerForm={customerForm}
             onFieldChange={updateCustomerField}
           />
 
           <div className="grid items-start gap-2.5 2xl:grid-cols-[minmax(0,1.98fr)_320px]">
             <div className="min-w-0 space-y-2.5">
-              <BillingTableSection
+              <BillingTable
                 rows={rows}
                 formatCurrency={formatCurrency}
                 calculateRowAmount={calculateRowAmount}
@@ -59,21 +59,18 @@ function BillingPOSPage() {
               />
 
               <div className="grid gap-2.5 xl:grid-cols-3">
-                <RecentItemsSection
+                <RecentItems
                   items={recentItems}
                   formatCurrency={formatCurrency}
                   onReAdd={addRecentItem}
                 />
-                <CustomerDetailsCard customer={customerSnapshot} />
-                <StockInfoCard stock={stockSnapshot} />
+                <CustomerDetails customer={customerSnapshot} />
+                <StockInfo stock={stockSnapshot} />
               </div>
             </div>
 
             <aside className="grid gap-2 content-start">
-              <BillSummaryPanel
-                summary={summary}
-                formatCurrency={formatCurrency}
-              />
+              <BillSummary summary={summary} formatCurrency={formatCurrency} />
 
               <PaymentSection
                 paymentMode={paymentMode}
@@ -84,13 +81,13 @@ function BillingPOSPage() {
                 onAmountReceivedChange={setAmountReceived}
               />
 
-              <QuickActionsSection />
+              <PosActions />
             </aside>
           </div>
         </div>
       </div>
 
-      <FooterStatusBar
+      <FooterStatus
         totalItems={summary.itemsCount}
         totalQuantity={summary.totalQuantity}
         statuses={footerStatuses}

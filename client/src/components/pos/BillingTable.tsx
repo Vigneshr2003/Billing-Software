@@ -1,7 +1,9 @@
 import { Plus, ScanLine, Search, Tags, Trash2 } from "lucide-react";
-import type { BillingItemRow } from "../../../types/pos";
+import Button from "../ui/Button";
+import Input from "../ui/Input";
+import type { BillingItemRow } from "../../types/billing.types";
 
-interface BillingTableSectionProps {
+interface BillingTableProps {
   rows: BillingItemRow[];
   formatCurrency: (value: number) => string;
   calculateRowAmount: (row: BillingItemRow) => number;
@@ -15,7 +17,7 @@ interface BillingTableSectionProps {
   onClearAll: () => void;
 }
 
-function BillingTableSection({
+function BillingTable({
   rows,
   formatCurrency,
   calculateRowAmount,
@@ -23,7 +25,7 @@ function BillingTableSection({
   onRemoveRow,
   onAddItem,
   onClearAll,
-}: BillingTableSectionProps) {
+}: BillingTableProps) {
   return (
     <section className="rounded-xl border border-slate-200 bg-white shadow-sm">
       <div className="space-y-2.5 border-b border-slate-200 p-3">
@@ -31,10 +33,9 @@ function BillingTableSection({
           <label className="relative block">
             <span className="sr-only">Scan barcode or search product</span>
             <ScanLine className="pointer-events-none absolute left-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-slate-400" />
-            <input
-              type="text"
-              placeholder="Scan barcode or search item name / code..."
+            <Input
               className="h-9 w-full rounded-lg border border-slate-200 bg-white pl-8 pr-3 text-[11px] text-slate-800 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+              placeholder="Scan barcode or search item name / code..."
             />
           </label>
 
@@ -42,14 +43,13 @@ function BillingTableSection({
             { label: "Recent Items", icon: Tags },
             { label: "Price Check", icon: Search },
           ].map(({ label, icon: Icon }) => (
-            <button
+            <Button
               key={label}
-              type="button"
               className="inline-flex h-9 items-center gap-1.5 rounded-lg border border-slate-200 bg-slate-50 px-2.5 text-[10px] font-medium text-blue-700 transition hover:bg-slate-100"
             >
               <Icon className="h-3.5 w-3.5" />
               <span>{label}</span>
-            </button>
+            </Button>
           ))}
         </div>
       </div>
@@ -94,31 +94,30 @@ function BillingTableSection({
                 </td>
                 <td className="px-2.5 py-2.5">{row.batch}</td>
                 <td className="px-2.5 py-2.5">
-                  <input
-                    type="number"
-                    value={row.qty}
+                  <Input
+                    className="h-7 w-11 rounded-md border border-slate-200 bg-white px-1.5 text-[10px] outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
                     onChange={(event) =>
                       onUpdateRow(row.id, "qty", Number(event.target.value) || 0)
                     }
-                    className="h-7 w-11 rounded-md border border-slate-200 bg-white px-1.5 text-[10px] outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+                    type="number"
+                    value={row.qty}
                   />
                 </td>
                 <td className="px-2.5 py-2.5">{row.unit}</td>
                 <td className="px-2.5 py-2.5">{formatCurrency(row.mrp)}</td>
                 <td className="px-2.5 py-2.5">
-                  <input
-                    type="number"
-                    value={row.rate}
+                  <Input
+                    className="h-7 w-16 rounded-md border border-slate-200 bg-white px-1.5 text-[10px] outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
                     onChange={(event) =>
                       onUpdateRow(row.id, "rate", Number(event.target.value) || 0)
                     }
-                    className="h-7 w-16 rounded-md border border-slate-200 bg-white px-1.5 text-[10px] outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+                    type="number"
+                    value={row.rate}
                   />
                 </td>
                 <td className="px-2.5 py-2.5">
-                  <input
-                    type="number"
-                    value={row.discountPercent}
+                  <Input
+                    className="h-7 w-11 rounded-md border border-slate-200 bg-white px-1.5 text-[10px] outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
                     onChange={(event) =>
                       onUpdateRow(
                         row.id,
@@ -126,13 +125,13 @@ function BillingTableSection({
                         Number(event.target.value) || 0,
                       )
                     }
-                    className="h-7 w-11 rounded-md border border-slate-200 bg-white px-1.5 text-[10px] outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+                    type="number"
+                    value={row.discountPercent}
                   />
                 </td>
                 <td className="px-2.5 py-2.5">
-                  <input
-                    type="number"
-                    value={row.taxPercent}
+                  <Input
+                    className="h-7 w-11 rounded-md border border-slate-200 bg-white px-1.5 text-[10px] outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
                     onChange={(event) =>
                       onUpdateRow(
                         row.id,
@@ -140,21 +139,21 @@ function BillingTableSection({
                         Number(event.target.value) || 0,
                       )
                     }
-                    className="h-7 w-11 rounded-md border border-slate-200 bg-white px-1.5 text-[10px] outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+                    type="number"
+                    value={row.taxPercent}
                   />
                 </td>
                 <td className="px-2.5 py-2.5 text-[13px] font-semibold text-slate-900">
                   {formatCurrency(calculateRowAmount(row))}
                 </td>
                 <td className="px-2.5 py-2.5">
-                  <button
-                    type="button"
-                    onClick={() => onRemoveRow(row.id)}
-                    className="inline-flex h-7 w-7 items-center justify-center rounded-md border border-rose-200 bg-rose-50 text-rose-600 transition hover:bg-rose-100"
+                  <Button
                     aria-label={`Delete ${row.itemName}`}
+                    className="inline-flex h-7 w-7 items-center justify-center rounded-md border border-rose-200 bg-rose-50 text-rose-600 transition hover:bg-rose-100"
+                    onClick={() => onRemoveRow(row.id)}
                   >
                     <Trash2 className="h-3.5 w-3.5" />
-                  </button>
+                  </Button>
                 </td>
               </tr>
             ))}
@@ -162,8 +161,8 @@ function BillingTableSection({
             {rows.length === 0 ? (
               <tr>
                 <td
-                  colSpan={12}
                   className="px-3 py-16 text-center text-xs text-slate-500"
+                  colSpan={12}
                 >
                   No billing items. Add items to start the invoice.
                 </td>
@@ -185,27 +184,25 @@ function BillingTableSection({
         </div>
 
         <div className="flex flex-wrap items-center gap-2">
-          <button
-            type="button"
-            onClick={onAddItem}
+          <Button
             className="inline-flex h-8 items-center justify-center gap-1.5 rounded-lg border border-blue-200 bg-white px-2.5 text-[10px] font-semibold text-blue-700 transition hover:bg-blue-50"
+            onClick={onAddItem}
           >
             <Plus className="h-3.5 w-3.5" />
             <span>Add Item</span>
-          </button>
+          </Button>
 
-          <button
-            type="button"
-            onClick={onClearAll}
+          <Button
             className="inline-flex h-8 items-center justify-center gap-1.5 rounded-lg border border-rose-200 bg-white px-2.5 text-[10px] font-semibold text-rose-700 transition hover:bg-rose-50"
+            onClick={onClearAll}
           >
             <Trash2 className="h-3.5 w-3.5" />
             <span>Clear All</span>
-          </button>
+          </Button>
         </div>
       </div>
     </section>
   );
 }
 
-export default BillingTableSection;
+export default BillingTable;

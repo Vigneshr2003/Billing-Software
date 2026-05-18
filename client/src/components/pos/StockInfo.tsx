@@ -1,11 +1,12 @@
 import { Boxes, CalendarRange, ShoppingBag, Warehouse } from "lucide-react";
-import type { StockSnapshot } from "../../../types/pos";
+import Card from "../ui/Card";
+import type { StockSnapshot } from "../../types/product.types";
 
-interface StockInfoCardProps {
+interface StockInfoProps {
   stock: StockSnapshot;
 }
 
-function StockInfoCard({ stock }: StockInfoCardProps) {
+function StockInfo({ stock }: StockInfoProps) {
   const items = [
     { label: "Current Stock", value: stock.currentStock, icon: Warehouse },
     { label: "Min. Stock", value: stock.minimumStock, icon: Boxes },
@@ -19,14 +20,14 @@ function StockInfoCard({ stock }: StockInfoCardProps) {
         Stock Info (Selected Item)
       </h2>
 
-      <div className="mb-3 flex items-center gap-2.5 rounded-lg border border-slate-100 bg-slate-50 px-2.5 py-2">
+      <Card className="mb-3 flex items-center gap-2.5 rounded-lg border border-slate-100 bg-slate-50 px-2.5 py-2">
         <div className="flex h-7 w-7 items-center justify-center rounded-md bg-white text-blue-600">
           <Warehouse className="h-4 w-4" />
         </div>
         <p className="text-[11px] font-medium text-slate-900">
           India Gate Basmati Rice 25kg
         </p>
-      </div>
+      </Card>
 
       <div className="space-y-1">
         {items.map(({ label, value, icon: Icon }) => (
@@ -43,4 +44,4 @@ function StockInfoCard({ stock }: StockInfoCardProps) {
   );
 }
 
-export default StockInfoCard;
+export default StockInfo;

@@ -14,35 +14,6 @@ export interface BillingItemRow {
   taxPercent: number;
 }
 
-export interface CustomerFormState {
-  customerName: string;
-  mobileNumber: string;
-  gstin: string;
-  outstandingAmount: string;
-  customerType: string;
-}
-
-export interface RecentItem {
-  id: string;
-  name: string;
-  code: string;
-  price: number;
-}
-
-export interface CustomerSnapshot {
-  name: string;
-  mobileNumber: string;
-  customerType: string;
-  outstandingAmount: string;
-}
-
-export interface StockSnapshot {
-  currentStock: string;
-  minimumStock: string;
-  lastPurchaseRate: string;
-  lastPurchaseDate: string;
-}
-
 export interface FooterStatusItem {
   id: string;
   label: string;

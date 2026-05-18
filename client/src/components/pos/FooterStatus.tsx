@@ -1,17 +1,17 @@
 import { CheckCircle2, CircleAlert, Wifi } from "lucide-react";
-import type { FooterStatusItem } from "../../../types/pos";
+import type { FooterStatusItem } from "../../types/billing.types";
 
-interface FooterStatusBarProps {
+interface FooterStatusProps {
   totalItems: number;
   totalQuantity: number;
   statuses: FooterStatusItem[];
 }
 
-function FooterStatusBar({
+function FooterStatus({
   totalItems,
   totalQuantity,
   statuses,
-}: FooterStatusBarProps) {
+}: FooterStatusProps) {
   return (
     <footer className="sticky bottom-0 z-10 mt-auto border-t border-slate-200 bg-white px-3 py-2 text-slate-700 sm:px-4">
       <div className="flex flex-col gap-1.5 text-[10px] lg:flex-row lg:items-center lg:justify-between">
@@ -53,4 +53,4 @@ function FooterStatusBar({
   );
 }
 
-export default FooterStatusBar;
+export default FooterStatus;

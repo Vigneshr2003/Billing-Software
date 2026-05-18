@@ -7,17 +7,19 @@ import {
   UserRound,
   Wallet,
 } from "lucide-react";
-import type { CustomerFormState } from "../../../types/pos";
+import Button from "../ui/Button";
+import Input from "../ui/Input";
+import type { CustomerFormState } from "../../types/customer.types";
 
-interface CustomerInfoSectionProps {
+interface CustomerSectionProps {
   customerForm: CustomerFormState;
   onFieldChange: (field: keyof CustomerFormState, value: string) => void;
 }
 
-function CustomerInfoSection({
+function CustomerSection({
   customerForm,
   onFieldChange,
-}: CustomerInfoSectionProps) {
+}: CustomerSectionProps) {
   return (
     <section className="rounded-xl border border-slate-200 bg-white p-2.5 shadow-sm">
       <div className="grid gap-2.5 xl:grid-cols-[minmax(0,1.45fr)_minmax(130px,1fr)_minmax(130px,1fr)_120px_140px_auto]">
@@ -27,11 +29,9 @@ function CustomerInfoSection({
             Customer
           </span>
           <select
-            value={customerForm.customerName}
-            onChange={(event) =>
-              onFieldChange("customerName", event.target.value)
-            }
             className="h-9 w-full rounded-lg border border-slate-200 bg-white px-2.5 text-[11px] text-slate-800 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+            onChange={(event) => onFieldChange("customerName", event.target.value)}
+            value={customerForm.customerName}
           >
             <option>Walk-in Customer</option>
             <option>Raj Stores</option>
@@ -44,12 +44,10 @@ function CustomerInfoSection({
           <span className="mb-1 block text-[10px] font-medium uppercase tracking-[0.14em] text-slate-500">
             Mobile Number
           </span>
-          <input
-            value={customerForm.mobileNumber}
-            onChange={(event) =>
-              onFieldChange("mobileNumber", event.target.value)
-            }
+          <Input
             className="h-9 w-full rounded-lg border border-slate-200 bg-white px-2.5 text-[11px] text-slate-800 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+            onChange={(event) => onFieldChange("mobileNumber", event.target.value)}
+            value={customerForm.mobileNumber}
           />
         </label>
 
@@ -57,11 +55,11 @@ function CustomerInfoSection({
           <span className="mb-1 block text-[10px] font-medium uppercase tracking-[0.14em] text-slate-500">
             GSTIN (Optional)
           </span>
-          <input
-            value={customerForm.gstin}
+          <Input
+            className="h-9 w-full rounded-lg border border-slate-200 bg-white px-2.5 text-[11px] text-slate-800 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
             onChange={(event) => onFieldChange("gstin", event.target.value)}
             placeholder="Enter GSTIN"
-            className="h-9 w-full rounded-lg border border-slate-200 bg-white px-2.5 text-[11px] text-slate-800 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+            value={customerForm.gstin}
           />
         </label>
 
@@ -82,11 +80,9 @@ function CustomerInfoSection({
             Customer Type
           </span>
           <select
-            value={customerForm.customerType}
-            onChange={(event) =>
-              onFieldChange("customerType", event.target.value)
-            }
             className="h-9 w-full rounded-lg border border-slate-200 bg-white px-2.5 text-[11px] text-slate-800 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+            onChange={(event) => onFieldChange("customerType", event.target.value)}
+            value={customerForm.customerType}
           >
             <option>Retail</option>
             <option>Wholesale</option>
@@ -95,47 +91,39 @@ function CustomerInfoSection({
         </label>
 
         <div className="flex flex-wrap items-end justify-end gap-1.5">
-          <button
-            type="button"
-            className="inline-flex h-9 items-center gap-1.5 rounded-lg border border-blue-200 bg-white px-2.5 text-[10px] font-medium text-blue-700 transition hover:bg-blue-50"
-          >
+          <Button className="inline-flex h-9 items-center gap-1.5 rounded-lg border border-blue-200 bg-white px-2.5 text-[10px] font-medium text-blue-700 transition hover:bg-blue-50">
             <span>Hold Bills</span>
             <span className="inline-flex h-4 min-w-4 items-center justify-center rounded-full bg-blue-600 px-1 text-[9px] font-semibold text-white">
               3
             </span>
-          </button>
-          <button
-            type="button"
-            className="inline-flex h-9 items-center gap-1.5 rounded-lg border border-blue-200 bg-blue-50 px-2.5 text-[10px] font-medium text-blue-700 transition hover:bg-blue-100"
-          >
+          </Button>
+          <Button className="inline-flex h-9 items-center gap-1.5 rounded-lg border border-blue-200 bg-blue-50 px-2.5 text-[10px] font-medium text-blue-700 transition hover:bg-blue-100">
             <Plus className="h-3.5 w-3.5" />
             <span>Add Customer</span>
-          </button>
+          </Button>
           {[
             { label: "History", icon: History },
             { label: "Ledger", icon: ClipboardList },
           ].map(({ label, icon: Icon }) => (
-            <button
+            <Button
               key={label}
-              type="button"
               className="inline-flex h-9 items-center gap-1.5 rounded-lg border border-slate-200 bg-white px-2.5 text-[10px] font-medium text-slate-700 transition hover:bg-slate-50"
             >
               <Icon className="h-3.5 w-3.5 text-blue-600" />
               <span>{label}</span>
-            </button>
+            </Button>
           ))}
-          <button
-            type="button"
-            className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-600 transition hover:bg-slate-50"
+          <Button
             aria-label="Expand section"
+            className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-600 transition hover:bg-slate-50"
           >
             <Expand className="hidden h-3.5 w-3.5" />
             <Maximize2 className="h-3.5 w-3.5" />
-          </button>
+          </Button>
         </div>
       </div>
     </section>
   );
 }
 
-export default CustomerInfoSection;
+export default CustomerSection;

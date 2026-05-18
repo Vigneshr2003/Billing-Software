@@ -1,15 +1,13 @@
 import { ReceiptText } from "lucide-react";
-import type { PosSummary } from "../../../types/pos";
+import Input from "../ui/Input";
+import type { PosSummary } from "../../types/billing.types";
 
-interface BillSummaryPanelProps {
+interface BillSummaryProps {
   summary: PosSummary;
   formatCurrency: (value: number) => string;
 }
 
-function BillSummaryPanel({
-  summary,
-  formatCurrency,
-}: BillSummaryPanelProps) {
+function BillSummary({ summary, formatCurrency }: BillSummaryProps) {
   const lines = [
     { label: "Items Count", value: String(summary.itemsCount) },
     { label: "Total Quantity", value: String(summary.totalQuantity) },
@@ -42,11 +40,10 @@ function BillSummaryPanel({
           <span className="text-slate-500">Discount</span>
           <div className="flex items-center gap-1.5">
             <span className="text-slate-400">%</span>
-            <input
-              type="text"
-              defaultValue="0.00"
+            <Input
               aria-label="Discount amount"
               className="h-7 w-20 rounded-md border border-slate-200 bg-white px-2 text-right text-[10px] text-slate-800 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+              defaultValue="0.00"
             />
           </div>
         </div>
@@ -64,4 +61,4 @@ function BillSummaryPanel({
   );
 }
 
-export default BillSummaryPanel;
+export default BillSummary;
