@@ -1,4 +1,4 @@
-import { Hash, Store } from "lucide-react";
+import { Hash } from "lucide-react";
 
 interface PosHeaderProps {
   invoiceNumber: string;
