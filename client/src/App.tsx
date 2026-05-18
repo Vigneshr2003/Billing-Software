@@ -2,6 +2,8 @@ import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import DashboardLayout from "./layouts/DashboardLayout";
 import BillingPOSPage from "./pages/BillingPOSPage";
 import DashboardPage from "./pages/DashboardPage";
+import SalesInvoicePage from "./pages/sales/SalesInvoicePage";
+import SalesReturnLayout from "./pages/sales/SalesReturnLayout";
 
 function App() {
   return (
@@ -11,6 +13,8 @@ function App() {
           <Route index element={<Navigate to="/dashboard" replace />} />
           <Route path="dashboard" element={<DashboardPage />} />
           <Route path="billing-pos" element={<BillingPOSPage />} />
+          <Route path="sales/invoice" element={<SalesInvoicePage />} />
+          <Route path="sales/return" element={<SalesReturnLayout />} />
         </Route>
       </Routes>
     </BrowserRouter>

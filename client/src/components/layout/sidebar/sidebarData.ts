@@ -51,8 +51,8 @@ export const sidebarData: SidebarEntry[] = [
     label: "Sales",
     icon: ChartColumnBig,
     children: [
-      { id: "sales-invoices", label: "Sales Invoice List", icon: ReceiptText },
-      { id: "sales-returns", label: "Sales Return", icon: FileClock },
+      { id: "sales-invoices", label: "Sales Invoice List", icon: ReceiptText, path: "/sales/invoice" },
+      { id: "sales-returns", label: "Sales Return", icon: FileClock, path: "/sales/return" },
       { id: "sales-quotation", label: "Quotation", icon: FileText },
       { id: "sales-orders", label: "Sales Order", icon: BookText },
       { id: "sales-delivery", label: "Delivery Challan", icon: Truck },
