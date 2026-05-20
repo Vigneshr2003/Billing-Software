@@ -48,7 +48,7 @@ function StatCard({ label, value, note, icon: Icon, accent, trend = "neutral" }:
       {/* Decorative gradient bar at top */}
       <div
         className={cn(
-          "absolute inset-x-0 top-0 h-[3px] opacity-0 transition-opacity duration-300 group-hover:opacity-100",
+          "absolute inset-x-0 top-0 h-0.75 opacity-0 transition-opacity duration-300 group-hover:opacity-100",
           accent.includes("emerald") && "bg-linear-to-r from-emerald-400 to-emerald-600",
           accent.includes("blue") && "bg-linear-to-r from-blue-400 to-blue-600",
           accent.includes("amber") && "bg-linear-to-r from-amber-400 to-amber-600",

@@ -35,7 +35,7 @@ function StockAlerts() {
       </div>
 
       <div className="overflow-x-auto">
-        <table className="w-full min-w-[480px]">
+        <table className="w-full min-w-120">
           <thead>
             <tr className="border-b border-slate-100">
               <th className="pb-3 text-left text-[11px] font-semibold uppercase tracking-wider text-slate-400">Item</th>

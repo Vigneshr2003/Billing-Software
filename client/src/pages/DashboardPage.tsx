@@ -17,8 +17,7 @@ function getGreeting(): string {
 function DashboardPage() {
   return (
     <div className="space-y-5">
-      {/* ── Welcome Header ── */}
-      <header className="rounded-xl border border-slate-200 bg-white px-5 py-5 shadow-sm">
+      <header >
         <h1 className="text-xl font-bold text-slate-900">
           {getGreeting()}, Srinath
         </h1>
@@ -33,23 +32,21 @@ function DashboardPage() {
       {/* ── Stats Cards ── */}
       <StatsCards />
 
-      {/* ── Sales Overview + Top Selling Products ── */}
       <div className="grid gap-5 xl:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)]">
         <SalesOverview />
         <TopSellingProducts />
       </div>
 
-      {/* ── Recent Bills ── */}
-      <RecentBills />
-
-      {/* ── Pending Collections + Stock Alerts ── */}
       <div className="grid gap-5 xl:grid-cols-2">
+        <RecentBills />
         <PendingCollections />
-        <StockAlerts />
       </div>
 
-      {/* ── Notifications ── */}
-      <Notifications />
+      <div className="grid gap-5 xl:grid-cols-2">
+        <StockAlerts />
+        <Notifications />
+      </div>
+
     </div>
   );
 }

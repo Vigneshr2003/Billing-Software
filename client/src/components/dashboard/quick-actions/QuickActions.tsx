@@ -31,9 +31,6 @@ const actions = [
 function QuickActions() {
   return (
     <section>
-      <h2 className="mb-3 text-sm font-semibold text-slate-700">
-        Quick Actions
-      </h2>
       <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
         {actions.map((action) => (
           <QuickActionCard key={action.title} {...action} />
