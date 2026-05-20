@@ -11,7 +11,6 @@ const invoices = [
     { invoiceNo: "INV-000118", date: "18 May 2025", time: "07:45 PM", customer: "Venkatesh Traders", mobile: "9876543222", items: 13, qty: 41, amount: "₹ 8,760.00", payment: "Credit", status: "Pending", salesman: "Ramesh" },
     { invoiceNo: "INV-000117", date: "18 May 2025", time: "06:05 PM", customer: "Friends Store", mobile: "9876543211", items: 6, qty: 16, amount: "₹ 1,980.00", payment: "Cash", status: "Paid", salesman: "Srinath" },
     { invoiceNo: "INV-000116", date: "18 May 2025", time: "05:00 PM", customer: "Modern Mart", mobile: "9876543233", items: 12, qty: 36, amount: "₹ 7,240.00", payment: "UPI", status: "Paid", salesman: "Ramesh" },
-
 ];
 
 const COLUMNS = [
@@ -148,8 +147,8 @@ function SalesInvoiceTable() {
                         <button
                             key={i}
                             className={`rounded-md px-2.5 py-1 text-xs transition ${page === 1
-                                    ? "bg-blue-600 text-white"
-                                    : "border border-slate-200 hover:bg-slate-100"
+                                ? "bg-blue-600 text-white"
+                                : "border border-slate-200 hover:bg-slate-100"
                                 }`}
                         >
                             {page}

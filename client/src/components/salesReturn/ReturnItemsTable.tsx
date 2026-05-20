@@ -103,30 +103,7 @@ function ReturnItemsTable() {
       tax: 5,
       amount: "2,050.00",
     },
-    {
-      sno: 9,
-      name: "India Gate Basmati Rice 25kg",
-      batch: "B2505",
-      originalQty: "1 Bag",
-      returnedQty: 1,
-      unit: "Bag",
-      rate: "2,050.00",
-      discount: 0,
-      tax: 5,
-      amount: "2,050.00",
-    },
-    {
-      sno: 10,
-      name: "India Gate Basmati Rice 25kg",
-      batch: "B2505",
-      originalQty: "1 Bag",
-      returnedQty: 1,
-      unit: "Bag",
-      rate: "2,050.00",
-      discount: 0,
-      tax: 5,
-      amount: "2,050.00",
-    },
+
   ];
 
   return (

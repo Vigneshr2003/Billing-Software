@@ -60,7 +60,7 @@ function SalesDailyStats() {
     ];
 
     return (
-        <div className="grid gap-2 md:grid-cols-2 xl:grid-cols-6">
+        <div className="grid grid-cols-2 gap-2 md:grid-cols-3 xl:grid-cols-6">
 
             {stats.map((stat, index) => {
                 const Icon = stat.icon;

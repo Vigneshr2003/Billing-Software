@@ -4,10 +4,12 @@ import SalesInvoiceTable from "../../components/sales/SalesInvoiceTable";
 import SalesQuickActions from "../../components/sales/SalesQuickActions";
 import SalesShortcuts from "../../components/sales/SalesShortcuts";
 import SalesDailyStats from "../../components/sales/SalesDailyStats";
+import SalesShortcutButton from "../../components/sales/SalesShortcutButton";
 
 function SalesInvoicePage() {
   return (
-    <div className="flex min-h-full flex-col gap-4 p-4">
+    <div className="flex min-h-full flex-col gap-2 p-2 sm:p-4">
+      <SalesShortcutButton />
 
       {/* Filters */}
       <SalesInvoiceFilter />
@@ -15,18 +17,22 @@ function SalesInvoicePage() {
       {/* KPI Summary Cards */}
       <SalesKpiCards />
 
-      {/* Invoice Table (left)  +  Quick Actions / Shortcuts sidebar (right) */}
-      <div className="grid gap-4" style={{ gridTemplateColumns: "minmax(0,1fr) 220px" }}>
+      {/* Invoice Table (left) + Quick Actions / Shortcuts sidebar (right) */}
+      <div className="flex flex-col gap-4 xl:grid xl:gap-4" style={{ gridTemplateColumns: "minmax(0,1fr) 220px" }}>
 
         {/* Left — scrollable invoice table */}
         <div className="min-w-0 overflow-hidden">
           <SalesInvoiceTable />
         </div>
 
-        {/* Right sidebar */}
-        <div className="flex flex-col gap-3">
-          <SalesQuickActions />
-          <SalesShortcuts />
+        {/* Right sidebar — row on sm/md, stacked on xl */}
+        <div className="flex flex-col gap-3 sm:flex-row xl:flex-col">
+          <div className="flex-1 xl:flex-none">
+            <SalesQuickActions />
+          </div>
+          <div className="flex-1 xl:flex-none">
+            <SalesShortcuts />
+          </div>
         </div>
 
       </div>

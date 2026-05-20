@@ -4,10 +4,14 @@ import ReturnItemsTable from "../../components/salesReturn/ReturnItemsTable";
 import ReturnSummaryPanel from "../../components/salesReturn/ReturnSummaryPanel";
 import ReturnNoteInput from "../../components/salesReturn/ReturnNoteInput";
 import ReturnActionBar from "../../components/salesReturn/ReturnActionBar";
+import SalesreturnShortcutButton from "../../components/salesReturn/SalesreturnShortcutButton.tsx";
 
 function SalesReturn() {
     return (
-        <div className="flex min-h-full flex-col gap-4 p-4">
+        <div className="flex min-h-full flex-col gap-3 p-2 sm:p-4">
+
+            {/* Action Buttons */}
+            <SalesreturnShortcutButton />
 
             {/* Top header — Return No, Date, Type, Reason, Reference Invoice */}
             <ReturnHeaderForm />
@@ -16,10 +20,10 @@ function SalesReturn() {
             <ReturnCustomerInfo />
 
             {/* Main content — item table (left) + summary panel (right) */}
-            <div className="grid gap-4" style={{ gridTemplateColumns: "minmax(0,1fr) 320px" }}>
+            <div className="flex flex-col gap-4 xl:grid xl:gap-4" style={{ gridTemplateColumns: "minmax(0,1fr) 320px" }}>
 
                 {/* Left — return items table + return note */}
-                <div className="flex min-w-0 flex-col gap-4 overflow-hidden">
+                <div className="flex min-w-0 flex-col gap-3 overflow-hidden">
                     <ReturnItemsTable />
                     <ReturnNoteInput />
                 </div>
@@ -39,4 +43,3 @@ function SalesReturn() {
 }
 
 export default SalesReturn;
-

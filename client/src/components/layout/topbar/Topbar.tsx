@@ -1,11 +1,34 @@
 import { Bell, Building2, CalendarDays, ChevronDown, Clock3, Menu } from "lucide-react";
 import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import Button from "../../ui/Button";
 import SearchBar from "./SearchBar";
 
 interface TopbarProps {
   onOpenMobileMenu: () => void;
 }
+
+interface PageMeta {
+  title: string;
+  subtitle: string;
+}
+
+const PAGE_META: Record<string, PageMeta> = {
+
+  "/sales/invoice": {
+    title: "Sales Invoice List",
+    subtitle: "View, search and manage all your sales invoices",
+  },
+  "/sales/return": {
+    title: "Sales Return",
+    subtitle: "Manage and process customer sales returns",
+  },
+};
+
+const DEFAULT_META: PageMeta = {
+  title: "",
+  subtitle: "",
+};
 
 const branches = [
   { id: "main", label: "Main Branch" },
@@ -36,6 +59,9 @@ function formatCurrentTime(date: Date) {
 
 function Topbar({ onOpenMobileMenu }: TopbarProps) {
   const [now, setNow] = useState(() => new Date());
+  const location = useLocation();
+
+  const pageMeta = PAGE_META[location.pathname] ?? DEFAULT_META;
 
   useEffect(() => {
     const timer = window.setInterval(() => {
@@ -47,20 +73,34 @@ function Topbar({ onOpenMobileMenu }: TopbarProps) {
 
   return (
     <header className="sticky top-0 z-30 border-b border-slate-200 bg-white/95 backdrop-blur">
-      <div className="flex h-13 items-center gap-1.5 px-2.5 sm:px-3">
+      <div className="flex h-14 items-center gap-2 px-2.5 sm:px-3">
         <Button
           aria-label="Open sidebar menu"
-          className="inline-flex h-8 w-8 items-center justify-center rounded-lg border border-slate-200 text-slate-700 shadow-sm transition-colors hover:bg-slate-50 md:hidden"
+          className="inline-flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg border border-slate-200 text-slate-700 shadow-sm transition-colors hover:bg-slate-50 md:hidden"
           onClick={onOpenMobileMenu}
         >
           <Menu className="h-3.5 w-3.5" />
         </Button>
 
+        {/* Page Title + Subtitle */}
+        <div className="hidden min-w-0 flex-shrink-0 flex-col justify-center md:flex">
+          <span className="truncate text-[13px] font-bold leading-tight text-slate-800">
+            {pageMeta.title}
+          </span>
+          <span className="truncate text-[10px] leading-tight text-slate-500">
+            {pageMeta.subtitle}
+          </span>
+        </div>
+
+        {/* Divider */}
+        <div className="hidden h-6 w-px flex-shrink-0 bg-slate-200 md:block" />
+
+        {/* Search Bar */}
         <div className="min-w-0 flex-1">
           <SearchBar />
         </div>
 
-        <div className="ml-auto flex items-center gap-1.5">
+        <div className="ml-auto flex flex-shrink-0 items-center gap-1.5">
           <div className="hidden items-center gap-1.5 lg:flex">
             <div className="inline-flex h-8 items-center gap-1.5 rounded-lg border border-slate-200 bg-white px-2.5 text-[10px] text-slate-600 shadow-sm">
               <CalendarDays className="h-3 w-3 text-blue-600" />

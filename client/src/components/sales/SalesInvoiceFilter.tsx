@@ -3,7 +3,7 @@ function SalesInvoiceFilter() {
         <div className="rounded-lg border border-slate-200 bg-white p-2 shadow-sm">
 
             {/* Top Filters */}
-            <div className="grid grid-cols-1 gap-2 md:grid-cols-3 lg:grid-cols-7">
+            <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-7">
 
                 {/* Date Range */}
                 <div>
