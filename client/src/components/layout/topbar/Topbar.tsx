@@ -1,29 +1,11 @@
 import { Bell, Building2, CalendarDays, ChevronDown, Clock3, Menu } from "lucide-react";
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
 import Button from "../../ui/Button";
 import SearchBar from "./SearchBar";
 
 interface TopbarProps {
   onOpenMobileMenu: () => void;
 }
-
-interface PageMeta {
-  title: string;
-}
-
-const PAGE_META: Record<string, PageMeta> = {
-  "/sales/invoice": {
-    title: "Sales Invoice List",
-  },
-  "/sales/return": {
-    title: "Sales Return List",
-  },
-};
-
-const DEFAULT_META: PageMeta = {
-  title: "",
-};
 
 const branches = [
   { id: "main", label: "Main Branch" },
@@ -54,9 +36,6 @@ function formatCurrentTime(date: Date) {
 
 function Topbar({ onOpenMobileMenu }: TopbarProps) {
   const [now, setNow] = useState(() => new Date());
-  const location = useLocation();
-
-  const pageMeta = PAGE_META[location.pathname] ?? DEFAULT_META;
 
   useEffect(() => {
     const timer = window.setInterval(() => {
