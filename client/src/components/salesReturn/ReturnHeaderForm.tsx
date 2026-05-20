@@ -2,15 +2,13 @@ import {
     CalendarDays,
     Search,
     Settings,
-    Maximize2,
-    PauseCircle,
 } from "lucide-react";
 
 function ReturnHeaderForm() {
     return (
         <div className="rounded-xl border border-slate-200 bg-white px-4 py-3 shadow-sm">
 
-            <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-[140px_140px_150px_150px_1fr_auto]">
+            <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-[140px_140px_150px_150px_1fr]">
 
                 {/* Return No */}
                 <div>
@@ -96,25 +94,6 @@ function ReturnHeaderForm() {
                     </div>
                 </div>
 
-                {/* Right Buttons */}
-                <div className="flex flex-wrap items-end gap-1.5 sm:col-span-2 xl:col-span-1">
-
-                    <button className="flex h-8 items-center gap-1.5 rounded-md border border-slate-200 px-3 text-xs font-medium text-slate-700 hover:bg-slate-50">
-                        <PauseCircle className="h-3.5 w-3.5" />
-                        Hold Return
-                    </button>
-
-                    <button className="flex h-8 items-center gap-1.5 rounded-md border border-slate-200 px-3 text-xs font-medium text-slate-700 hover:bg-slate-50">
-                        <Settings className="h-3.5 w-3.5" />
-                        Settings
-                    </button>
-
-                    <button className="flex h-8 items-center gap-1.5 rounded-md border border-slate-200 px-3 text-xs font-medium text-slate-700 hover:bg-slate-50">
-                        <Maximize2 className="h-3.5 w-3.5" />
-                        Fullscreen
-                    </button>
-
-                </div>
             </div>
         </div>
     );

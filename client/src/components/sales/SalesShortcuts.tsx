@@ -41,7 +41,7 @@ function SalesShortcuts() {
     ];
 
     return (
-        <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+        <div className="h-full rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
 
             {/* Header */}
             <div className="mb-4">

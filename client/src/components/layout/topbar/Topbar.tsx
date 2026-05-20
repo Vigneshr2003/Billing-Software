@@ -10,24 +10,19 @@ interface TopbarProps {
 
 interface PageMeta {
   title: string;
-  subtitle: string;
 }
 
 const PAGE_META: Record<string, PageMeta> = {
-
   "/sales/invoice": {
     title: "Sales Invoice List",
-    subtitle: "View, search and manage all your sales invoices",
   },
   "/sales/return": {
-    title: "Sales Return",
-    subtitle: "Manage and process customer sales returns",
+    title: "Sales Return List",
   },
 };
 
 const DEFAULT_META: PageMeta = {
   title: "",
-  subtitle: "",
 };
 
 const branches = [
@@ -82,18 +77,7 @@ function Topbar({ onOpenMobileMenu }: TopbarProps) {
           <Menu className="h-3.5 w-3.5" />
         </Button>
 
-        {/* Page Title + Subtitle */}
-        <div className="hidden min-w-0 flex-shrink-0 flex-col justify-center md:flex">
-          <span className="truncate text-[13px] font-bold leading-tight text-slate-800">
-            {pageMeta.title}
-          </span>
-          <span className="truncate text-[10px] leading-tight text-slate-500">
-            {pageMeta.subtitle}
-          </span>
-        </div>
 
-        {/* Divider */}
-        <div className="hidden h-6 w-px flex-shrink-0 bg-slate-200 md:block" />
 
         {/* Search Bar */}
         <div className="min-w-0 flex-1">

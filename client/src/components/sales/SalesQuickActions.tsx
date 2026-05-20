@@ -22,7 +22,7 @@ const actions = [
 
 function SalesQuickActions() {
   return (
-    <div className="rounded-xl border border-slate-200 bg-white p-3 shadow-sm">
+    <div className="h-full rounded-xl border border-slate-200 bg-white p-3 shadow-sm">
       <h3 className="mb-2.5 text-[11px] font-bold uppercase tracking-wider text-slate-500">
         Quick Actions
       </h3>

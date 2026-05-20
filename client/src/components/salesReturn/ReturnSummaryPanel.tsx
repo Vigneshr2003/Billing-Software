@@ -3,14 +3,14 @@ function ReturnSummaryPanel() {
         <div className="rounded-xl border border-slate-200 bg-white shadow-sm">
 
             {/* Header */}
-            <div className="border-b border-slate-200 px-4 py-3">
+            <div className="border-b border-slate-200 px-4 py-2">
                 <h2 className="text-sm font-semibold text-slate-800">
                     Return Summary
                 </h2>
             </div>
 
             {/* Summary rows */}
-            <div className="space-y-2.5 px-4 py-3">
+            <div className="space-y-1.5 px-4 py-2">
 
                 {/* Items Count */}
                 <div className="flex items-center justify-between">
@@ -79,7 +79,7 @@ function ReturnSummaryPanel() {
             </div>
 
             {/* Net Refund Amount */}
-            <div className="border-y border-slate-200 bg-slate-50 px-4 py-3">
+            <div className="border-y border-slate-200 bg-slate-50 px-4 py-2">
                 <div className="flex items-center justify-between">
                     <p className="text-sm font-semibold text-slate-700">Net Refund Amount</p>
                     <h2 className="text-xl font-bold text-blue-600">₹ 2,826.40</h2>
@@ -87,7 +87,7 @@ function ReturnSummaryPanel() {
             </div>
 
             {/* Refund / Adjustment */}
-            <div className="space-y-3 px-4 py-3">
+            <div className="space-y-2 px-4 py-2">
 
                 {/* Section Title */}
                 <p className="text-xs font-semibold text-slate-700">Refund / Adjustment</p>
@@ -146,10 +146,10 @@ function ReturnSummaryPanel() {
                     <label className="mb-1 block text-[10px] font-medium text-slate-500">
                         Refund Note (Optional)
                     </label>
-                    <textarea
-                        rows={3}
+                    <input
+                        type="text"
                         placeholder="Enter refund note..."
-                        className="w-full rounded-md border border-slate-200 p-2.5 text-xs outline-none focus:border-blue-500 placeholder:text-slate-400"
+                        className="h-8 w-full rounded-md border border-slate-200 px-2.5 text-xs outline-none focus:border-blue-500 placeholder:text-slate-400"
                     />
                 </div>
 
