@@ -47,6 +47,12 @@ function DashboardPage() {
         <Notifications />
       </div>
 
+      <div className="flex justify-center items-center">
+        <p className="mt-1 text-sm text-slate-500">
+          @2026 Venticinqe Mart, All rights reserved
+        </p>
+      </div>
+
     </div>
   );
 }
